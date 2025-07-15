@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/spidr-app/static/css/main.538290e4.css",
+    "main.js": "/spidr-app/static/js/main.04034d8a.js",
+    "static/media/spidr.png": "/spidr-app/static/media/spidr.ea22c78fb8c12822a603.png",
+    "index.html": "/spidr-app/index.html",
+    "main.538290e4.css.map": "/spidr-app/static/css/main.538290e4.css.map",
+    "main.04034d8a.js.map": "/spidr-app/static/js/main.04034d8a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.538290e4.css",
+    "static/js/main.04034d8a.js"
+  ]
+}

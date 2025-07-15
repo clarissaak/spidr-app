@@ -4,11 +4,11 @@ import Background from "./Background";
 import spidr from "./spidr.png";
 
 // custom input
-function MyInput({label, id, value, onChange}) {
+function MyInput({label, id, value, onChange, placeholder = ""}) {
     return (
       <div className="MyInput">
         <label>{label}:
-          <input type="text" id={id} value={value} onChange={onChange}/>
+          <input type="text" id={id} value={value} onChange={onChange} placeholder={placeholder}/>
         </label>
       </div>
     )
@@ -96,10 +96,16 @@ function App() {
     };
       
     const validatePin = (pin) => {
-        if (!/^\d+$/.test(pin))
-            return 'Please enter a valid pin';
-        if (pin.length !== 16) 
+        if (!pin.trim()) 
+            return 'PIN is required';
+
+        const cleanPin = pin.replace(/-/g, '');
+        if (!/^\d+$/.test(cleanPin))
+            return 'Please enter a valid PIN';
+        if (cleanPin.length !== 16) 
             return 'PIN must be exactly 16 digits long.';
+        if (pin !== `${cleanPin.substring(0,4)}-${cleanPin.substring(4,8)}-${cleanPin.substring(8,12)}-${cleanPin.substring(12,16)}`)
+            return 'PIN must be in the format XXXX-XXXX-XXXX-XXXX';
         return '';
     };
 
@@ -123,7 +129,7 @@ function App() {
                     <div className="errorMessage"> {errors.email}</div>
                     <MyInput label="Guess our air fryer's cost" id="cost" value={formData.cost} onChange={handleChange('cost')} />
                     <div className="errorMessage"> {errors.cost}</div>
-                    <MyInput label="Spidr Pin" id="pin" value={formData.pin} onChange={handleChange('pin')} />
+                    <MyInput label="Spidr PIN" id="pin" value={formData.pin} onChange={handleChange('pin')} placeholder="1111-1111-1111-1111" />
                     <div className="errorMessage"> {errors.pin}</div>
                     <button type="submit">Submit</button>
                 </form>

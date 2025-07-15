@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
-import Particles, {initParticlesEngine} from "@tsparticles/react";
-import {loadFull} from "tsparticles";
 import "./App.css";
-import particlesOptions from "./particles.json";
+import Background from "./Background";
 import spidr from "./spidr.png";
 
 // custom input
@@ -17,20 +15,6 @@ function MyInput({label, id, value, onChange}) {
 }
 
 function App() {
-    const [init, setInit] = useState(false);
-
-    useEffect(() => {
-        if (init) {
-            return;
-        }
-
-        initParticlesEngine(async (engine) => {
-            await loadFull(engine);
-        }).then(() => {
-            setInit(true);
-        });
-    }, []);
-
      // input array
      const [formData, setFormData] = useState({
         fname: '',
@@ -122,7 +106,7 @@ function App() {
 
     return (
         <div className="App">
-            {init && <Particles options={particlesOptions}/>}
+            <Background/>
             <header className="App-header">
                 <img className="Spidr" src={spidr} alt="spidr"/>
             </header>
